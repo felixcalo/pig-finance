@@ -1,21 +1,13 @@
 import styled from 'styled-components';
 
-export const Container = styled.header`
-  background: var(--background-header);
-`;
-
-export const Content = styled.div`
+export const Container = styled.section`
   max-width: 1120px;
-  padding: 1rem 1rem 8rem;
+  padding: 1rem 1rem 10rem;
   margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
 
-  img {
-    width: 8rem;
-    cursor: pointer;
-  }
   button {
     background: var(--blue);
     color: var(--white);
