@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const CardLayout = styled.section`
   cursor: pointer;
   background: var(--grey-light);
+  /* background: var(--white); */
   padding: 1.5rem 2rem;
   border-radius: 0.25rem;
   color: var(--blue);

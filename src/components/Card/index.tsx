@@ -15,7 +15,8 @@ export function Card(props: Card) {
         <img src={props.icon} alt='' />
       </Header>
       <Content>
-        <span>$</span> {props.sold}
+        <span>$</span>
+        <span>{props.sold}</span>
       </Content>
     </CardLayout>
   );

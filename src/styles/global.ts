@@ -8,9 +8,7 @@ export const GlobalStyle = createGlobalStyle`
 --red: #F00000;
 --background-header: #FFFFFF;
 --white: #FFFFFF;
---grey-light:#F3F8FD;
-
-
+--grey-light:#FCFCFC;
 }
 *{
     margin:0; padding:0;
@@ -35,14 +33,12 @@ button{
     cursor: not-allowed;
 }
 h1,h2,h3,h4,h5,h6 {
-
     font-weight: 500;
 }
 body{
     -webkit-font-smoothing: antialiased;
     background: var(--background);
-    font-weight: 500;
-
+    font-weight: 400;
 }
 
 `;
