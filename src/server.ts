@@ -14,6 +14,7 @@ export function makerServer() {
             value: -120.0,
             category: 'Informatique',
             date: new Date().toString(),
+            type: 'credit',
           },
 
           {
@@ -22,6 +23,7 @@ export function makerServer() {
             value: -130.0,
             category: 'Informatique',
             date: new Date().toString(),
+            type: 'debit',
           },
           {
             id: 3,
@@ -29,6 +31,7 @@ export function makerServer() {
             value: 1100.0,
             category: 'Technologie',
             date: new Date().toString(),
+            type: 'credit',
           },
         ],
       });
@@ -38,6 +41,12 @@ export function makerServer() {
       this.get('/transaction', () => {
         return this.schema.all('transaction');
       });
+      this.post('/transaction', () => {
+        return true;
+      });
+      // this.delete('/transaction/:id', (schema,request) => {
+      //   return schema.find(request.params.id);
+      // });
     },
   });
 }

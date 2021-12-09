@@ -41,4 +41,35 @@ body{
     font-weight: 400;
 }
 
+
+.react-overlay-modal {
+    position:fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color:rgba(0, 0, 0, 0.50);
+    align-items: center;
+ justify-content: center ; display: flex; 
+ cursor: pointer;
+  }
+  
+ .react-content-modal{
+      position:relative;
+      top: 0px;
+      left: 40px;
+      right: 40px;
+      bottom: 40px;
+      border: 1px solid #ccc;
+      background: var(--background);
+      overflow: auto;
+      border-radius: 4px;
+      --webkit-overflow-scrolling: touch;
+      outline: none;
+      padding: 3rem;
+      width: 100%;
+      max-width: 540px;
+      
+    }
+
 `;
