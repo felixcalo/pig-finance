@@ -8,7 +8,8 @@ import {
 import Income from '../../assets/income.svg';
 import Outcome from '../../assets/outcome.svg';
 import Close from '../../assets/close.svg';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useTransactions } from '../../hooks/useTransactionContextApi';
 
 interface MakerModalProps {
   onNewTransactionModalClose: () => void;
@@ -23,13 +24,32 @@ export function MakerModal({
 }: MakerModalProps) {
   const [type, setType] = useState('credit');
   const [title, setTitle] = useState('');
-  const [value, setValue] = useState(0.0);
+  const [value, setValue] = useState(0);
   const [category, setCategory] = useState('');
   const [date, setDate] = useState('');
 
-  function handleCreateNewTransaction(event: React.FormEvent<HTMLFormElement>) {
+  const { createTransaction } = useTransactions();
+
+  function cleanField() {
+    setType('credit');
+    setTitle('');
+    setValue(0);
+    setCategory('');
+    setDate('');
+  }
+  async function handleCreateNewTransaction(
+    event: React.FormEvent<HTMLFormElement>
+  ) {
     event.preventDefault();
-    alert('Hello ' + date);
+    await createTransaction({
+      title,
+      value,
+      category,
+      date,
+      type,
+    });
+    cleanField();
+    onNewTransactionModalClose();
   }
 
   return (
@@ -58,7 +78,7 @@ export function MakerModal({
         />
         <input
           type='number'
-          placeholder='Value'
+          placeholder='Amount'
           min='0'
           value={value}
           onChange={(event) => setValue(Number(event.target.value))}

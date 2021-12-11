@@ -11,7 +11,7 @@ export function makerServer() {
           {
             id: 1,
             title: 'Build site web',
-            value: -120.0,
+            value: 120.0,
             category: 'Informatique',
             date: new Date().toString(),
             type: 'credit',
@@ -20,7 +20,15 @@ export function makerServer() {
           {
             id: 2,
             title: 'Software videoMaker',
-            value: -130.0,
+            value: 130.0,
+            category: 'Informatique',
+            date: new Date().toString(),
+            type: 'debit',
+          },
+          {
+            id: 4,
+            title: 'Software Office',
+            value: 100.0,
             category: 'Informatique',
             date: new Date().toString(),
             type: 'debit',
@@ -41,12 +49,11 @@ export function makerServer() {
       this.get('/transaction', () => {
         return this.schema.all('transaction');
       });
-      this.post('/transaction', () => {
-        return true;
+
+      this.post('/transaction', (schema, request) => {
+        const data = JSON.parse(request.requestBody);
+        return this.schema.create('transaction', data);
       });
-      // this.delete('/transaction/:id', (schema,request) => {
-      //   return schema.find(request.params.id);
-      // });
     },
   });
 }

@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
 import { Container } from './style';
-import { api } from '../../services/api';
+import { useTransactions } from '../../hooks/useTransactionContextApi';
 
 interface Transaction {
   id?: number;
@@ -8,14 +7,10 @@ interface Transaction {
   value: number;
   category: string;
   date: string;
+  type: string;
 }
 export function TransactionTable() {
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
-  useEffect(() => {
-    api
-      .get('/transaction')
-      .then((response) => setTransactions(response.data.transactions));
-  }, []);
+  const { transactions } = useTransactions();
 
   return (
     <Container>
@@ -32,8 +27,16 @@ export function TransactionTable() {
           {transactions.map((transaction: Transaction) => (
             <tr key={transaction.id}>
               <td>{transaction.title}</td>
-              <td style={{ color: transaction.value > 0 ? '#00FA9A' : 'red' }}>
-                $ {transaction.value}
+              <td
+                style={{
+                  color: transaction.type !== 'debit' ? '#00FA9A' : 'red',
+                }}
+              >
+                <span>- $</span>
+
+                {transaction.type !== 'credit'
+                  ? transaction.value
+                  : transaction.value}
               </td>
               <td>{transaction.category}</td>
               <td>{transaction.date}</td>
